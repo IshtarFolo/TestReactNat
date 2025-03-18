@@ -1,131 +1,51 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+{/* Ma StyleSheet */}
+import styles from './style/styles';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+{/*
+  Le style peut être implémenté dans les balises <View> et <Text> (comme dans HTML), sinon créer et importer avec variable stylesheet comme plus bas.
+  StyleSheet s'écrit ainsi!!!! 2 'S' majuscules!
+
+  <View> = Composante de base pour afficher des éléments. Supporte layout avec flexbox, style, touch handling, etc.
+  SafeArea tags (<SafeAreaView>, <SafeAreaProvider>, etc.) = Composantes pour gérer les zones de sécurité sur les appareils mobiles (A.K.A. barre de status, Indicateurs IOS, Barre nav Android, etc.).
+*/}
+
+const HelloApp = () => {
+  return(
+    <SafeAreaView style={styles.safeContainer}>
+    <View style={styles.container}>
+
+      <Text style={styles.text}>Hello, world!</Text>
+
+{/* 
+  <Button> = bouton mais important d'ajouter title et onPress donc texte du bouton et action une fois appuyé. 
+  
+*/}
+      <Button onPress={() => {
+        Alert.alert('Bouton appuyé!');
+      }}
+      title="Appuyez-moi!"
+      >
+      </Button>
+
+{/*
+  <TouchableOpacity> = Bouton mais plus de flexibilité pour le style. On peut ajouter des styles, des images, des textes, etc. Il a un effet de pression lorsqu'on appuie dessus (l'opacité change).
+  Il existe d'autre "Touchable" comme <TouchableHighlight>, <TouchableNativeFeedback>, <TouchableWithoutFeedback> qui ont des effets différents.
+*/}
+      <TouchableOpacity style={styles.boutonTouchable} onPress={() => {
+        Alert.alert('Bouton 2 appuyé!');
+      }}>
+        <Text>Appuyez ici aussi!</Text>
+      </TouchableOpacity>
+
     </View>
+    </SafeAreaView>
   );
-}
+};
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
-  /*
-   * To keep the template simple and small we're adding padding to prevent view
-   * from rendering under the System UI.
-   * For bigger apps the reccomendation is to use `react-native-safe-area-context`:
-   * https://github.com/AppAndFlow/react-native-safe-area-context
-   *
-   * You can read more about it here:
-   * https://github.com/react-native-community/discussions-and-proposals/discussions/827
-   */
-  const safePadding = '5%';
-
-  return (
-    <View style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        style={backgroundStyle}>
-        <View style={{paddingRight: safePadding}}>
-          <Header/>
-        </View>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            paddingHorizontal: safePadding,
-            paddingBottom: safePadding,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+export default HelloApp;
