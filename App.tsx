@@ -1,8 +1,17 @@
-{/* Importation des composantes utilisées dans le projet */}
-import React, { useState } from 'react';
-import { SafeAreaView, Text, View, Button, TouchableOpacity, TouchableHighlight, Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+{/* Importation des composantes React-Native du script imports.ts et de React */}
+import React from 'react';
+import {
+  useState,
+  SafeAreaView,
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  TouchableHighlight,
+  Image,
+  NavigationContainer,
+  createNativeStackNavigator,
+} from './imports';
 
 {/*
   Le style peut être implémenté dans les balises <View> et <Text> (comme dans HTML), 
