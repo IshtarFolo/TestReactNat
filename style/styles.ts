@@ -34,7 +34,12 @@ import {StyleSheet} from 'react-native';
       width: 200,
       height: 500
     },
-    resetButton: {
+    boutonPage2: {
+      width: 200,
+      height: 50,
+      backgroundColor: 'rgba(255,255,255,1)',
+      alignItems: 'center',
+      justifyContent: 'center',
       marginTop: 20,
     },
   });
