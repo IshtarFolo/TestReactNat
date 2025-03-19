@@ -34,6 +34,9 @@ import {StyleSheet} from 'react-native';
       width: 200,
       height: 500
     },
+    resetButton: {
+      marginTop: 20,
+    },
   });
 
   export default styles;
