@@ -1,9 +1,17 @@
-import React from 'react';
-import {SafeAreaView, Text, View, Button, Alert, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import {SafeAreaView, Text, View, Button, Alert, TouchableOpacity, Image} from 'react-native';
 
 {/* Ma StyleSheet */}
 import styles from './style/styles';
 
+{/* 
+  Création d'un Props pour générer des nombres au hasard. 
+  On peut ajouter des types de données comme string, number, boolean, etc.
+  Ici, on a un type de données string ou number.
+*/}
+type randomProps = {
+  nombres: string | number;
+};
 
 {/*
   Le style peut être implémenté dans les balises <View> et <Text> (comme dans HTML), sinon créer et importer avec variable stylesheet comme plus bas.
@@ -12,22 +20,57 @@ import styles from './style/styles';
   <View> = Composante de base pour afficher des éléments. Supporte layout avec flexbox, style, touch handling, etc.
   SafeArea tags (<SafeAreaView>, <SafeAreaProvider>, etc.) = Composantes pour gérer les zones de sécurité sur les appareils mobiles (A.K.A. barre de status, Indicateurs IOS, Barre nav Android, etc.).
 */}
-
 const HelloApp = () => {
+
+  {/* 
+    Utilisation de useState pour changer l'état des éléments. 
+    Ici, on change l'état de la variable estClicke.
+    Elle passe de false à true lorsqu'on appuie sur le bouton.
+  */}
+  const [estClicke, setClicke] = useState(false);
+
+  {/* 
+    Utilisation de useState pour changer l'état des éléments. 
+    Ici, on change l'état de la variable randomNumber.
+    Elle passe de 0 à un nombre aléatoire entre 1 et 10 lorsqu'on appuie sur le bouton.
+  */}
+  const [randomNumber, setRandomNumber] = useState(0); // À changer pour un nombre aléatoire
+  
   return(
     <SafeAreaView style={styles.safeContainer}>
     <View style={styles.container}>
 
-      <Text style={styles.text}>Hello, world!</Text>
+      {/* Utilisation du Props 'source' */}
+      <Image style={styles.image}
+
+      
+      //  source = Propriété pour afficher une image. 
+      //  On peut ajouter des styles, des textes, des boutons, etc.
+      //  require = Méthode pour importer une image. 
+      //  </View>  On peut ajouter des styles, des textes, des boutons, etc.  
+        source={
+          require('./img/execution-sans-jugement-sous-les-rois-maures-de-Grenade.jpg')
+        }
+      ></Image>
+
+      {/* 
+        <Text> = Composante de base pour afficher du texte. 
+        On peut ajouter des styles, des images, des boutons, etc.
+        <Random/> = Appel de la fonction Random pour afficher un nombre entre 1 et 10 au hasard.
+      */}
+      <Text style={styles.text}>
+        Hello, world! <Random nombres={randomNumber} /> 
+      </Text>
 
 {/* 
   <Button> = bouton mais important d'ajouter title et onPress donc texte du bouton et action une fois appuyé. 
-  
+  On peut ajouter d'autres props comme color, disabled, etc.
 */}
       <Button onPress={() => {
-        Alert.alert('Bouton appuyé!');
+        setClicke(true);
       }}
-      title="Appuyez-moi!"
+      disabled={estClicke}
+      title={estClicke ? 'MERCI!' : 'Clique-moi!'}
       >
       </Button>
 
@@ -36,9 +79,10 @@ const HelloApp = () => {
   Il existe d'autre "Touchable" comme <TouchableHighlight>, <TouchableNativeFeedback>, <TouchableWithoutFeedback> qui ont des effets différents.
 */}
       <TouchableOpacity style={styles.boutonTouchable} onPress={() => {
-        Alert.alert('Bouton 2 appuyé!');
+        const randomNumber = Math.floor(Math.random() * 10);
+        setRandomNumber(randomNumber);
       }}>
-        <Text>Appuyez ici aussi!</Text>
+        <Text>Non, appuie ici!</Text>
       </TouchableOpacity>
 
     </View>
@@ -46,6 +90,14 @@ const HelloApp = () => {
   );
 };
 
-
+{/* 
+  Création d'une fonction Random pour générer des nombres au hasard.
+  On peut ajouter des props pour les styles, les nombres, etc.
+*/}
+const Random = ({nombres}: randomProps) => {
+  return (
+    <Text>{nombres}</Text> // En attendant que l'utilisateur appuie sur le bouton pour générer le nombre par défaut: 0.
+  );
+}
 
 export default HelloApp;

@@ -30,6 +30,10 @@ import {StyleSheet} from 'react-native';
       justifyContent: 'center',
       marginTop: 20,
     },
+    image: {
+      width: 200,
+      height: 500
+    },
   });
 
   export default styles;
