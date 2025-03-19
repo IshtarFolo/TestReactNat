@@ -74,12 +74,19 @@ const HelloApp = () => {
       >
       </Button>
 
+{/* Remet le bouton à son état de base */}
+      <Button onPress={() => {
+        setClicke(false);
+      }}
+        title="Reset!"
+      ></Button>
+
 {/*
   <TouchableOpacity> = Bouton mais plus de flexibilité pour le style. On peut ajouter des styles, des images, des textes, etc. Il a un effet de pression lorsqu'on appuie dessus (l'opacité change).
   Il existe d'autre "Touchable" comme <TouchableHighlight>, <TouchableNativeFeedback>, <TouchableWithoutFeedback> qui ont des effets différents.
 */}
       <TouchableOpacity style={styles.boutonTouchable} onPress={() => {
-        const randomNumber = Math.floor(Math.random() * 10);
+        const randomNumber = Math.floor(Math.random() * 100);
         setRandomNumber(randomNumber);
       }}>
         <Text>Non, appuie ici!</Text>
